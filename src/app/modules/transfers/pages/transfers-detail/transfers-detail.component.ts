@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountService, PageAccountsInterface } from 'src/app/modules/account';
-import { PageTransfersInterface, TransferService } from 'src/app/modules/transfers';
-import { TableDataInterface } from 'src/app/shared/interfaces/table-data.interface';
+
+// Services
+import { AccountService } from 'src/app/modules/account/services';
+import { TransferService } from '../../services';
+
+// Interfaces
+import { PageAccountsInterface } from '../../../account/interfaces';
+import { PageTransfersInterface } from '../../interfaces';
+import { TableDataInterface } from 'src/app/shared/interfaces';
+
 import { DateRangeModel, PaginationModel } from 'src/app/shared/models';
 
 @Component({
@@ -75,7 +82,7 @@ export class TransfersDetailComponent implements OnInit {
     })
   }
 
-  format(items: any, hiddenCols: string[]): any[][] {
+  format(items: any[], hiddenCols: string[]): any[][] {
     if (items === undefined) {
       return [[]]
     }
@@ -97,7 +104,7 @@ export class TransfersDetailComponent implements OnInit {
         values.splice(splice, 1)
         keys.splice(splice, 1)
       }
-      const row: { key: string, value: any }[] = []
+      const row: { key: string, value: unknown }[] = []
       for (let i = 0; i < values.length; i++) {
         const a = { key: keys[i], value: values[i] }
         row.push(a)

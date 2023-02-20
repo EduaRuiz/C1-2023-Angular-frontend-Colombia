@@ -6,15 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { TransfersDetailComponent } from './pages/transfers-detail/transfers-detail.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    children: [
-      { path: '', component: TransfersDetailComponent },
-      { path: ':id', component: TransfersDetailComponent },
-      { path: '', redirectTo: '', pathMatch: 'full' },
-      //{ path: '**', redirectTo: '' },
-    ],
-  },
+
+  { path: '', component: TransfersDetailComponent },
+  { path: ':id', component: TransfersDetailComponent },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  //{ path: '**', redirectTo: '' },
+
+
 ];
 
 @NgModule({

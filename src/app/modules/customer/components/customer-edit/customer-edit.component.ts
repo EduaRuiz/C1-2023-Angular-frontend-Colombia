@@ -148,12 +148,12 @@ export class CustomerEditComponent implements OnInit {
     })
   }
 
-  private handlerError(err: any): void {
+  private handlerError(err: Error): void {
     console.error(err)
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: err?.error?.message,
+      text: err.message,
     })
   }
 

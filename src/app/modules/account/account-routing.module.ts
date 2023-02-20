@@ -4,10 +4,6 @@ import { AccountsDetailComponent } from './pages/accounts-detail';
 
 const routes: Routes = [
   { path: '', component: AccountsDetailComponent },
-  // {
-  //   path: 'transactions/:id',
-  //   component: 
-  // },
   { path: '', redirectTo: '', pathMatch: 'full' },
   //{ path: '**', redirectTo: '' },
 ];

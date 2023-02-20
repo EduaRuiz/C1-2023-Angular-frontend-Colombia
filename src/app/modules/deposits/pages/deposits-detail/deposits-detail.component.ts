@@ -1,12 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DepositService } from '../../services/deposit.service';
-import { PageDepositInterface } from '../../interfaces/page-deposit.interface';
-import { PageAccountsInterface } from '../../../account/interfaces/page-accounts.interface';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+// Services
 import { AccountService } from 'src/app/modules/account/services';
-import { PaginationModel } from '../../../../shared/models/pagination.model';
-import { DateRangeModel } from '../../../../shared/models/date-range.model';
-import { TableDataInterface } from 'src/app/shared/interfaces/table-data.interface';
+import { DepositService } from '../../services';
+
+// Interfaces
+import { PageAccountsInterface } from '../../../account/interfaces';
+import { PageDepositInterface } from '../../interfaces';
+import { TableDataInterface } from 'src/app/shared/interfaces';
+
+// Models
+import { DateRangeModel, PaginationModel } from '../../../../shared/models';
 
 @Component({
   selector: 'sofka-bank-deposits-detail',
@@ -82,7 +87,7 @@ export class DepositsDetailComponent implements OnInit {
     })
   }
 
-  format(items: any, hiddenCols: string[]): any[][] {
+  format(items: any[], hiddenCols: string[]): any[][] {
     if (items === undefined) {
       return [[]]
     }
@@ -104,7 +109,7 @@ export class DepositsDetailComponent implements OnInit {
         values.splice(splice, 1)
         keys.splice(splice, 1)
       }
-      const row: { key: string, value: any }[] = []
+      const row: { key: string, value: unknown }[] = []
       for (let i = 0; i < values.length; i++) {
         const a = { key: keys[i], value: values[i] }
         row.push(a)

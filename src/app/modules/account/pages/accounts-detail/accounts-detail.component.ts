@@ -34,7 +34,7 @@ export class AccountsDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    AccountTypeEnum['Checking account']
+    AccountTypeEnum['Checking account'];
     this.getAll();
     // Swal.fire('Any fool can use a computer')
   }
@@ -44,7 +44,7 @@ export class AccountsDetailComponent implements OnInit {
       next: (data) => this.accounts = data,
       error: (err) => this.handlerError(err),
       complete: () => this.totalPages = this.accounts.totalPages,
-    })
+    });
   }
 
   delete(content: any): void {
@@ -53,7 +53,7 @@ export class AccountsDetailComponent implements OnInit {
       next: (data) => this.handlerSuccess(),
       error: (err) => this.handlerError(err),
       complete: () => this.totalPages = this.accounts.totalPages,
-    })
+    });
   }
 
   add(accountTypeId: 'Checking account' | 'Saving account'): void {
@@ -62,8 +62,7 @@ export class AccountsDetailComponent implements OnInit {
       next: (data) => this.handlerSuccess(),
       error: (err) => this.handlerError(err),
       complete: () => this.totalPages = this.accounts.totalPages,
-    })
-    this.backgroundColor$.color = !this.backgroundColor$.color;
+    });
     this.backgroundColor$.updateColor.emit(!this.backgroundColor$.color);
   }
 
@@ -72,12 +71,12 @@ export class AccountsDetailComponent implements OnInit {
     this.open(content);
   }
 
-  onGenerateTransfer(outhComeAccount: AccountInterface, content: any): void{
+  onGenerateTransfer(outhComeAccount: AccountInterface, content: any): void {
     this.outcomeAccountSelected = outhComeAccount;
     this.open(content);
   }
 
-  onDelete(accountId: string, content: any): void{
+  onDelete(accountId: string, content: any): void {
     this.open(content);
     this.idToDelete = accountId;
   }
@@ -90,7 +89,7 @@ export class AccountsDetailComponent implements OnInit {
       title: 'Done',
       showConfirmButton: false,
       timer: 1000
-    })
+    });
   }
 
   private handlerError(err: any): void {
@@ -99,7 +98,7 @@ export class AccountsDetailComponent implements OnInit {
       icon: 'error',
       title: 'Oops...',
       text: err?.error?.message,
-    })
+    });
   }
 
   getPage(page: number): void {
@@ -108,14 +107,14 @@ export class AccountsDetailComponent implements OnInit {
     this.getAll();
   }
 
-  depositAdded(modal: any): void{
+  depositAdded(modal: any): void {
     modal.close();
     this.getAll();
   }
 
-  transferGenerated(modal: any): void{
+  transferGenerated(modal: any): void {
     modal.close();
-    this.getAll()
+    this.getAll();
   }
 
   open(content: any) {
@@ -133,6 +132,6 @@ export class AccountsDetailComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
-    }
+    };
   }
 }

@@ -1,29 +1,24 @@
+// Libraries
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import localeEsCo from '@angular/common/locales/es-CO'
-import { RouterModule } from '@angular/router';
-
-import { JwtModule } from "@auth0/angular-jwt";
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './pages';
-import { CustomerModule } from '../customer/customer.module';
-import { IndexComponent } from './pages/index/index.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+// Modules
+import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AppRoutingModule } from './app-routing.module';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+// Components
+import { AppComponent } from './pages';
+import { IndexComponent } from './pages/index/index';
 import { environment } from 'src/environments/environment';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-registerLocaleData(localeEsCo, 'es-Co');
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from 'src/app/shared';
-import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './interceptors';
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
+registerLocaleData(localeEsCo, 'es-Co');
 
 @NgModule({
   declarations: [AppComponent, IndexComponent],
@@ -33,20 +28,12 @@ export function tokenGetter() {
   ],
   bootstrap: [AppComponent],
   imports: [
-    SharedModule,
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule,
-    FormsModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-      },
-    }),
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
   ]
 })
 export class AppModule { }

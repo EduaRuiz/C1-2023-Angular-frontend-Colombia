@@ -5,14 +5,42 @@
     </div>
 
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-      <select class="form-select {{handlerValidators('incomeAccountId')}}" formControlName="incomeAccountId"
-        aria-label="Default select example">
-        <option>{{incomeAccountId}}</option>
-        <option *ngFor="let item of incomeAccounts">{{item.id}}</option>
-      </select>
-      <div class="invalid-feedback">
-        {{handlerMessage('incomeAccountId')}}
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-ownsAccounts-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-ownsAccounts" type="button" role="tab" aria-controls="nav-ownsAccounts"
+            aria-selected="true" (click)="onIncomeAccountIs()">Own accounts</button>
+          <button class="nav-link" id="nav-externalAccounts-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-externalAccounts" type="button" role="tab" aria-controls="nav-externalAccounts"
+            aria-selected="false">Other people's accounts</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-ownsAccounts" role="tabpanel"
+          aria-labelledby="nav-ownsAccounts-tab" tabindex="0">
+          <div class="mt-4">
+            <select class="form-select {{handlerValidators('incomeAccountId')}}" formControlName="incomeAccountId"
+              aria-label="Select an id account">
+              <option>{{incomeAccountId}}</option>
+              <option *ngFor="let item of incomeAccounts">{{item.id}}</option>
+            </select>
+            <div class="invalid-feedback">
+              {{handlerMessage('incomeAccountId')}}
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="nav-externalAccounts" role="tabpanel" aria-labelledby="nav-externalAccounts-tab"
+          tabindex="0">
+          <div class="mt-4">
+            <input class="form-control {{handlerValidators('incomeAccountId')}}" formControlName="incomeAccountId"
+              aria-label="Account Id" type="text" placeholder="Account Id" value="{{checkoutForm.controls}}">
+            <div class="invalid-feedback">
+              {{handlerMessage('incomeAccountId')}}
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="mb-2 mt-4">
         <label class="form-label" for="amount">Amount</label>
         <div class="input-group mb-3">
@@ -28,7 +56,7 @@
       <div>
         <label class="form-label " for="reason">Reason</label>
         <textarea class="form-control {{handlerValidators('reason')}}" formControlName="reason" type="text" id="reason"
-          name="reason" placeholder="Reason" aria-label="Reason" [(ngModel)]="reason" cols="30" rows="5"></textarea>
+          name="reason" placeholder="Reason" aria-label="Reason" cols="30" rows="5"></textarea>
         <div class="invalid-feedback">
           {{handlerMessage('reason')}}
         </div>

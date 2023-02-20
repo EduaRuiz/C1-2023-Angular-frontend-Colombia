@@ -25,7 +25,6 @@ export class AuthGuard implements CanActivate, CanLoad {
       .pipe(
         tap(valid => {
           if (!valid) {
-            console.log(valid)
             localStorage.removeItem('access_token');
             localStorage.removeItem('googleToken');
             this.router.navigate(['index']);

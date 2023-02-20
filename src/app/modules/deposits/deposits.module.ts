@@ -5,15 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
-import { DepositsDetailComponent } from './pages/deposits-detail/deposits-detail.component';
+import { NewDepositComponent } from './components/new-deposit';
+import { DepositsDetailComponent } from './pages/deposits-detail';
 
 // Modules
 import { DepositsRoutingModule } from './deposits-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared';
 
 @NgModule({
   declarations: [
     DepositsDetailComponent,
+    NewDepositComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     NgbModule,
     SharedModule,
+  ],
+  exports: [
+    NewDepositComponent,
   ]
 })
 export class DepositsModule { }
